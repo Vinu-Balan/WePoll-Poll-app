@@ -1,0 +1,191 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<title>Profile - {{user_profile.user.username}}</title>
+   <!-- <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> -->
+
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/color.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+</head>
+<body>
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+
+	</div>
+
+	<section>
+			<div class="feature-photo">
+				<figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
+				<form action="/follow" method="POST">
+					{% csrf_token %}
+					<div class="add-btn">
+					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
+
+					{% if user_post_length == 0 %}
+					<span style="color: white; font-size: 27px;"><b>No Post</b></span>
+					{% elif user_post_length == 1 %}
+					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Post</b></span>
+					{% else %}
+					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Posts</b></span>
+					{% endif %}
+
+					{% if user_followers == 0 or user_followers == 1 %}
+					<span style="color: white; font-size: 27px;"><b>{{user_followers}} follower</b></span>
+					{% else %}
+					<span style="color: white; font-size: 27px;"><b>{{user_followers}} followers</b></span>
+					{% endif %}
+
+
+					<span style="color: white; font-size: 27px;"><b>{{user_following}} following</b></span>
+
+					<input type="hidden" value="{{user.username}}" name="follower" />
+					<input type="hidden" value="{{user_object.username}}" name="user" />
+
+					{% if user_object.username == user.username %}
+					<a href="/settings" data-ripple="">Account Settings</a>
+					{% else %}
+					<a data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</button></a>
+					{% endif %}
+
+					</div>
+				</form>
+
+				<!-- <form class="edit-phto">
+					<i class="fa fa-camera-retro"></i>
+					<label class="fileContainer">
+						Upload Cover Photo
+					<input type="file"/>
+					</label>
+				</form> -->
+				<div class="container-fluid">
+					<div class="row merged">
+						<div class="col-lg-2 col-sm-3">
+							<div class="user-avatar">
+								<figure>
+									<img src="{{user_profile.profileimg.url}}" style="height: 250px; width: 100%;" alt="">
+									<!-- <form class="edit-phto">
+										<i class="fa fa-camera-retro"></i>
+										<label class="fileContainer">
+											<a href="#account-settings">Upload Profile Photo</a>
+										</label>
+									</form> -->
+								</figure>
+							</div>
+						</div>
+						<div class="col-lg-10 col-sm-9">
+							<div class="timeline-info">
+								<ul>
+									<li class="admin-name">
+									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
+									  <!--<span>Group Admin</span>-->
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- top area -->
+		<section>
+			<div class="bio">
+					{{user_profile.bio}}
+			</div>
+		</section>
+		<div>
+			{% for post in polls %}
+			<div class="bg-white shadow rounded-md  -mx-2 lg:mx-0" style="padding:10px;border-radius:20px;margin-bottom:10px;">
+                            <!-- post header-->
+                            <div class="flex justify-between items-center px-4 py-3" style="display:flex;flex-direction:row;width:80%;">
+<!--                                <div class="flex flex-1 items-center space-x-4" >-->
+<!--                                     <a href="#">-->
+<!--                                        <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">-->
+<!--                                            <img width="60%" height="80%" src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="bg-gray-200 border border-white rounded-full w-8 h-8">-->
+<!--                                        </div>-->
+<!--                                    </a>-->
+<!--                                    <span class="block font-semibold "><a href="/profile/{{post.user}}">@{{post.user}}</a></span>-->
+<!--                                </div>-->
+                              <div>
+                                <a href="#"> <i class="icon-feather-more-horizontal text-2xl hover:bg-gray-200 rounded-full p-2 transition -mr-1 "></i> </a>
+                                <form method="post" action="myprofile" class="bg-white w-56 shadow-md mx-auto p-2 mt-12 rounded-md text-gray-500 hidden text-base border border-gray-100  " uk-drop="mode: hover;pos: top-right" style="margin-left:40%;">
+                                    <div>
+
+                                        <h3>Created at: {{post.created_at}}</h3>
+                                    </div>
+                                    <ul class="space-y-1" >
+                                      <li>
+                                          <button type="submit" id="delete" name="delete" value="{{post.id}}">
+                                          <a href="" class="flex items-center px-3 py-2 " style="font-weight:900;background-color:red;color:white;">
+                                              <i class="uil-trash-alt mr-1"></i>  Delete Post
+                                          </a>
+                                          </button>
+                                      </li>
+                                    </ul>
+
+                                </form>
+                              </div>
+                            </div>
+                            <h2 style="margin-left:20px;font-size:25px;margin-bottom:10px;">
+                                    <a href="/profile/{{post.user}}"><strong>{{post.user}}:</strong></a> {{post.caption}}
+                                </h2>
+                            <form action="" method="POST" enctype="multipart/form-data" >
+                                <div>
+<!--                                    <div>-->
+<!--                                        <a href="">-->
+<!--                                            <input type="button" style="width:100%;" name="opt1" value="Your poll has been posted">-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+                                <div style="display:flex;flex-direction:row;border: 2px solid #e6e6e6;border-radius:10px;margin-top:20px;margin-bottom:20px;">
+                                    <div style="height:50px;width:25%;justify-content:center;padding:10px;font-weight:900;">
+                                    <h3>{{post.classAName}}</h3>
+                                </div>
+                                <div class="progress" style="height:50px;width:70%;">
+                                  <div class="progress-bar" role="progressbar" style="width: {{post.classAPercent}}%;height:50px;" aria-valuenow="{{post.classAPercent}}" aria-valuemin="0" aria-valuemax="100">{{post.classAName}} {{post.classAPercent}}%</div>
+                                </div>
+                                    <div style="height:50px;width:10%;justify-content:center;padding:10px;font-weight:900;">
+                                    <h3>{{post.classAPercent}}%</h3>
+                                </div>
+                                </div>
+                                <div style="display:flex;flex-direction:row;border: 2px solid #e6e6e6;border-radius:10px;margin-top:20px;margin-bottom:20px;">
+                                    <div style="height:50px;width:25%;justify-content:center;padding:10px;font-weight:900;">
+                                    <h3>{{post.classBName}}</h3>
+                                </div>
+                                <div class="progress" style="height:50px;width:70%;">
+                                  <div class="progress-bar" role="progressbar" style="width: {{post.classBPercent}}%;height:50px;" aria-valuenow="{{post.classAPercent}}" aria-valuemin="0" aria-valuemax="100">{{post.classBName}} {{post.classBPercent}}%</div>
+                                </div>
+                                    <div style="height:30px;width:10%;justify-content:center;padding:10px;font-weight:900;">
+                                    <h3>{{post.classBPercent}}%</h3>
+                                </div>
+                                </div>
+                                </div>
+                            </form>
+
+<!--                            <div uk-lightbox>-->
+<!--                                <a href="{{post.image.url}}">  -->
+<!--                                    <img src="{{post.image.url}}" alt="">-->
+<!--                                </a>-->
+<!--                            </div>-->
+
+                        </div>
+			{% endfor %}
+		</div>
+
+
+
+	<script data-cfasync="false" src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script><script src="{% static 'js/main.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+
+</html>

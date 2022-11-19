@@ -1,0 +1,9 @@
+input[type=radio] {
+    margin-top:5px;
+    border: 0px;
+    width:5%;
+    height: 25px;
+}
+input[type=submit] {
+    width:100;
+}
