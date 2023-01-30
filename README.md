@@ -3,7 +3,7 @@
 I tried in this project to build an application similar to instagram where in people can follow each other and post polls for any two categories and get responses from the other users.
 
 ## Live Demo
-[https://vinubalanj.pythonanywhere.com/signin?next=/logout)
+https://vinubalanj.pythonanywhere.com/signin?next=/logout
 
 ## Project Screenshot
 ![WePoll screenshot](./d-social-media-ss1.png)
