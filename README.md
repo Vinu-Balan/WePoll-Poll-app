@@ -7,10 +7,13 @@ I tried in this project to build an application similar to instagram where in pe
 
 ## Project Screenshot
 ![WePoll screenshot](./d-social-media-ss1.png)
+
+![WePoll screenshot](./d-social-media-ss2.png)
+
+![WePoll screenshot](./d-social-media-ss3.png)
+
 ## Project Features:
-- Cache 📂
-- Nice design as Twitter design.
-- Fully responsive design (100%).
-- Dark/Light theme.
-- English/German languages.
-- Notifications in app. 
+- Nice design as Instagram/Facebook design.
+- Ability to post polls
+- search feature to search users
+- follow users feature
