@@ -6,7 +6,7 @@ I tried in this project to build an application similar to instagram where in pe
 [https://vinubalanj.pythonanywhere.com/signin?next=/logout)
 
 ## Project Screenshot
-![WePoll screenshot](./home.PNG)
+![WePoll screenshot](./d-social-media-ss1.PNG)
 
 ## Project Features:
 - Cache 📂
