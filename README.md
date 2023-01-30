@@ -7,9 +7,9 @@ I tried in this project to build an application similar to instagram where in pe
 
 ## Project Screenshot
 ![WePoll screenshot](./d-social-media-ss1.png)
-
+#Creating Polls
 ![WePoll screenshot](./d-social-media-ss2.png)
-
+#Submitting Votes
 ![WePoll screenshot](./d-social-media-ss3.png)
 
 ## Project Features:
